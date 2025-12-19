@@ -21,7 +21,7 @@ const Nilavilakku = ({ delay = 0, position }) => {
           ease: "easeInOut",
         }}
       >
-        <svg width="80" height="120" viewBox="0 0 80 120" className="drop-shadow-xl">
+        <svg width="60" height="90" viewBox="0 0 80 120" className="drop-shadow-xl sm:w-[80px] sm:h-[120px]">
           <defs>
             <radialGradient id={`flame-${delay}`}>
               <stop offset="0%" stopColor="#ffeb3b" />
@@ -114,7 +114,7 @@ const Hibiscus = ({ delay = 0, position }) => {
           ease: "easeInOut",
         }}
       >
-        <svg width="90" height="130" viewBox="0 0 90 130" className="drop-shadow-2xl">
+        <svg width="70" height="100" viewBox="0 0 90 130" className="drop-shadow-2xl sm:w-[90px] sm:h-[130px]">
           {/* Hibiscus specific styling */}
           <defs>
             <radialGradient id={`hibiscus-glow-${delay}`}>
@@ -279,7 +279,7 @@ const BoyWithCap = () => {
       }}
     >
       <motion.div>
-        <svg width="180" height="220" viewBox="0 0 180 220" className="drop-shadow-2xl">
+        <svg width="140" height="170" viewBox="0 0 180 220" className="drop-shadow-2xl sm:w-[180px] sm:h-[220px]">
           <defs>
             <radialGradient id="boy-glow">
               <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.5" />
@@ -653,7 +653,7 @@ const MalluGirlCelebrating = ({ position, delay = 0, color = "#fbbf24" }) => {
       animate={{ scale: 1, opacity: 1, y: 0, rotate: 0 }}
       transition={{ delay, type: "spring", bounce: 0.8 }}
     >
-      <motion.svg width="120" height="150" viewBox="0 0 120 150">
+      <motion.svg width="80" height="100" viewBox="0 0 120 150" className="sm:w-[120px] sm:h-[150px]">
         <defs>
           <linearGradient id={`kasavu-gradient-${delay}`} x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="#ffffff" />
@@ -1040,7 +1040,7 @@ const MalluCelebratingStickman = ({ position, delay = 0, color = "#fbbf24", type
       animate={{ scale: 1, opacity: 1, y: 0, rotate: 0 }}
       transition={{ delay, type: "spring", bounce: 0.8 }}
     >
-      <motion.svg width="120" height="140" viewBox="0 0 120 140">
+      <motion.svg width="80" height="93" viewBox="0 0 120 140" className="sm:w-[120px] sm:h-[140px]">
         <defs>
           <linearGradient id={`mundu-gradient-${delay}`} x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="#ffffff" />
@@ -1310,7 +1310,7 @@ const KeralaBirthdayCake = () => {
       animate={{ scale: 1, opacity: 1, rotate: 0 }}
       transition={{ duration: 1.2, type: "spring", bounce: 0.5 }}
     >
-      <svg width="350" height="400" viewBox="0 0 350 400" className="drop-shadow-2xl">
+      <svg width="250" height="286" viewBox="0 0 350 400" className="drop-shadow-2xl sm:w-[300px] sm:h-[343px] md:w-[350px] md:h-[400px]">
         <defs>
           <linearGradient id="cake-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="#fef3c7" />
@@ -1549,7 +1549,7 @@ const KathakaliDancer = ({ onSurpriseClick }) => {
       }}
     >
       <motion.div>
-        <svg width="140" height="180" viewBox="0 0 140 180" className="drop-shadow-2xl">
+        <svg width="100" height="129" viewBox="0 0 140 180" className="drop-shadow-2xl sm:w-[120px] sm:h-[154px] md:w-[140px] md:h-[180px]">
           <defs>
             <radialGradient id="kathakali-glow">
               <stop offset="0%" stopColor="#22c55e" stopOpacity="0.8" />
@@ -1950,7 +1950,7 @@ export const Home = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 md:px-8 py-12 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-3 sm:px-4 md:px-8 py-8 sm:py-12 overflow-hidden">
       {/* Dark Theme Overlay */}
       {surpriseClicked && (
         <motion.div
@@ -1967,7 +1967,7 @@ export const Home = () => {
               animate={{ scale: [0, 1.5, 1], opacity: [0, 1, 1] }}
               exit={{ scale: 0, opacity: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-white text-9xl font-black"
+              className="text-white text-6xl sm:text-7xl md:text-9xl font-black"
             >
               {countdown}
             </motion.div>
@@ -1975,29 +1975,29 @@ export const Home = () => {
 
           {/* Birthday Cake and Message */}
           {showBirthday && (
-            <div className="flex flex-col items-center justify-center gap-8">
+            <div className="flex flex-col items-center justify-center gap-4 sm:gap-6 md:gap-8">
               {/* Kerala-themed Party - Boys and Girls mix */}
-              {/* Boys with mundu/puncha */}
+              {/* Boys with mundu/puncha - Hidden on very small screens to reduce clutter */}
               <MalluCelebratingStickman 
-                position={{ top: '8%', left: '8%' }}
+                position={{ top: '8%', left: '5%' }}
                 delay={0.8}
                 color="#fbbf24"
                 type="mundu"
               />
               <MalluCelebratingStickman 
-                position={{ bottom: '12%', left: '12%' }}
+                position={{ bottom: '10%', left: '8%' }}
                 delay={1.2}
                 color="#22c55e"
                 type="mundu"
               />
               <MalluCelebratingStickman 
-                position={{ top: '50%', left: '3%', transform: 'translateY(-50%)' }}
+                position={{ top: '50%', left: '2%', transform: 'translateY(-50%)' }}
                 delay={1.6}
                 color="#f97316"
                 type="mundu"
               />
               <MalluCelebratingStickman 
-                position={{ top: '25%', left: '18%' }}
+                position={{ top: '22%', left: '12%' }}
                 delay={2}
                 color="#dc2626"
                 type="puncha"
@@ -2005,32 +2005,32 @@ export const Home = () => {
               
               {/* Girls with kasavu saree */}
               <MalluGirlCelebrating 
-                position={{ top: '8%', right: '8%' }}
+                position={{ top: '8%', right: '5%' }}
                 delay={1}
                 color="#ec4899"
               />
               <MalluGirlCelebrating 
-                position={{ bottom: '12%', right: '12%' }}
+                position={{ bottom: '10%', right: '8%' }}
                 delay={1.4}
                 color="#3b82f6"
               />
               <MalluGirlCelebrating 
-                position={{ top: '50%', right: '3%', transform: 'translateY(-50%)' }}
+                position={{ top: '50%', right: '2%', transform: 'translateY(-50%)' }}
                 delay={1.8}
                 color="#a855f7"
               />
               <MalluGirlCelebrating 
-                position={{ top: '25%', right: '18%' }}
+                position={{ top: '22%', right: '12%' }}
                 delay={2.2}
                 color="#14b8a6"
               />
               <MalluGirlCelebrating 
-                position={{ bottom: '30%', left: '22%' }}
+                position={{ bottom: '28%', left: '18%' }}
                 delay={2.4}
                 color="#f43f5e"
               />
               <MalluCelebratingStickman 
-                position={{ bottom: '30%', right: '22%' }}
+                position={{ bottom: '28%', right: '18%' }}
                 delay={2.6}
                 color="#8b5cf6"
                 type="puncha"
@@ -2039,7 +2039,7 @@ export const Home = () => {
               <KeralaBirthdayCake />
               
               <motion.h1
-  className="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-green-500 mb-4"
+  className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-green-500 mb-4"
   animate={{
     backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
   }}
@@ -2052,7 +2052,7 @@ export const Home = () => {
 
 
 <motion.p
-  className="text-2xl md:text-3xl text-pink-300 font-semibold"
+  className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-pink-300 font-semibold px-4"
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   transition={{ delay: 1 }}
@@ -2061,7 +2061,7 @@ export const Home = () => {
 </motion.p>
 
 <motion.p
-  className="text-xl md:text-2xl text-green-300 font-medium mt-2"
+  className="text-base sm:text-lg md:text-xl lg:text-2xl text-green-300 font-medium mt-2 px-4"
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   transition={{ delay: 1.4 }}
@@ -2138,7 +2138,7 @@ export const Home = () => {
 
       {/* Floating decorative elements around card */}
       <motion.div
-        className="absolute top-10 left-10"
+        className="hidden sm:block absolute top-10 left-4 sm:left-10"
         animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
         transition={{ duration: 4, repeat: Infinity }}
       >
@@ -2146,7 +2146,7 @@ export const Home = () => {
       </motion.div>
       
       <motion.div
-        className="absolute top-10 right-10"
+        className="hidden sm:block absolute top-10 right-4 sm:right-10"
         animate={{ y: [0, -20, 0], rotate: [0, -10, 0] }}
         transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
       >
@@ -2154,7 +2154,7 @@ export const Home = () => {
       </motion.div>
       
       <motion.div
-        className="absolute bottom-20 left-20"
+        className="hidden md:block absolute bottom-20 left-10 md:left-20"
         animate={{ y: [0, -15, 0], rotate: [0, 5, -5, 0] }}
         transition={{ duration: 5, repeat: Infinity }}
       >
@@ -2162,7 +2162,7 @@ export const Home = () => {
       </motion.div>
       
       <motion.div
-        className="absolute top-1/3 right-20"
+        className="hidden md:block absolute top-1/3 right-10 md:right-20"
         animate={{ y: [0, -15, 0], rotate: [0, -5, 5, 0] }}
         transition={{ duration: 5, repeat: Infinity, delay: 0.7 }}
       >
@@ -2179,22 +2179,22 @@ export const Home = () => {
         {/* Card Container */}
         <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border-8 border-green-700 overflow-hidden">
           {/* Card Header with Kerala Pattern */}
-          <div className="bg-gradient-to-r from-green-600 via-yellow-500 to-red-600 py-6 px-8 border-b-8 border-green-800">
+          <div className="bg-gradient-to-r from-green-600 via-yellow-500 to-red-600 py-4 sm:py-6 px-4 sm:px-8 border-b-4 sm:border-b-8 border-green-800">
             <motion.div
-              className="flex items-center justify-center gap-4"
+              className="flex items-center justify-center gap-2 sm:gap-4"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <span className="text-5xl">🪔</span>
-              <h2 className="text-3xl md:text-5xl font-black text-white text-center" style={{ textShadow: '3px 3px 0 #15803d' }}>
+              <span className="text-3xl sm:text-4xl md:text-5xl">🪔</span>
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-black text-white text-center" style={{ textShadow: '3px 3px 0 #15803d' }}>
                 ജന്മദിനാശംസകൾ
               </h2>
-              <span className="text-5xl">🌺</span>
+              <span className="text-3xl sm:text-4xl md:text-5xl">🌺</span>
             </motion.div>
           </div>
 
           {/* Card Body */}
-          <div className="p-8 md:p-12 text-center space-y-8 relative">
+          <div className="p-4 sm:p-6 md:p-8 lg:p-12 text-center space-y-4 sm:space-y-6 md:space-y-8 relative">
             {/* Decorative background pattern */}
             <div className="absolute inset-0 opacity-5 pointer-events-none">
               <svg className="w-full h-full">
@@ -2230,7 +2230,7 @@ export const Home = () => {
               >
                 {/* English text - Main name */}
                 <h1 
-                  className="text-6xl md:text-8xl lg:text-9xl font-black uppercase relative mb-2"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-black uppercase relative mb-2"
                   style={{ 
                     fontFamily: 'Impact, sans-serif',
                     color: '#dc2626',
@@ -2254,7 +2254,7 @@ export const Home = () => {
                 
                 {/* Age badge */}
                 <motion.div
-                  className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-black text-3xl md:text-4xl px-8 py-3 rounded-full shadow-xl border-4 border-green-700"
+                  className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-full shadow-xl border-2 sm:border-4 border-green-700"
                   initial={{ scale: 0, rotate: -180 }}
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{ delay: 1.5, type: "spring", bounce: 0.7 }}
@@ -2267,7 +2267,7 @@ export const Home = () => {
 
             {/* Kerala-themed bubbles */}
             <motion.div
-              className="flex flex-wrap justify-center gap-4 md:gap-8 items-center"
+              className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-8 items-center px-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8 }}
@@ -2285,15 +2285,15 @@ export const Home = () => {
                   transition={{ delay: item.delay, type: "spring", bounce: 0.8 }}
                 >
                   <motion.div
-                    className="relative bg-gradient-to-br from-yellow-50 to-green-50 rounded-2xl px-5 py-3 shadow-lg border-3 border-green-600"
+                    className="relative bg-gradient-to-br from-yellow-50 to-green-50 rounded-xl sm:rounded-2xl px-3 sm:px-4 md:px-5 py-2 sm:py-3 shadow-lg border-2 sm:border-3 border-green-600"
                     animate={{ 
                       y: [0, -8, 0],
                     }}
                     transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
                     whileHover={{ scale: 1.05 }}
                   >
-                    <p className="text-xl md:text-2xl font-bold whitespace-nowrap">
-                      <span className="mr-2 text-3xl">{item.emoji}</span>
+                    <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold whitespace-nowrap">
+                      <span className="mr-1 sm:mr-2 text-xl sm:text-2xl md:text-3xl">{item.emoji}</span>
                       <span style={{ color: item.color }}>
                         {item.text}
                       </span>
@@ -2311,13 +2311,13 @@ export const Home = () => {
               transition={{ delay: 2.6, type: "spring", bounce: 0.6 }}
             >
               <div 
-                className="relative rounded-2xl p-8 md:p-10 shadow-xl border-4 border-green-600"
+                className="relative rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl border-2 sm:border-4 border-green-600"
                 style={{
                   background: 'linear-gradient(135deg, #fef3c7 0%, #fef08a 50%, #fde047 100%)',
                 }}
               >
                 <motion.p
-                  className="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-3 leading-relaxed"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-center mb-2 sm:mb-3 leading-relaxed"
                   style={{ 
                     color: '#15803d',
                   }}
@@ -2329,7 +2329,7 @@ export const Home = () => {
                   എത്ര സന്തോഷവും<br />
                   എത്ര അനുഗ്രഹവും നിറഞ്ഞ<br />
                   <motion.span
-                    className="text-2xl md:text-3xl lg:text-4xl block mt-2"
+                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl block mt-1 sm:mt-2"
                     style={{
                       background: 'linear-gradient(90deg, #dc2626, #ea580c, #fbbf24)',
                       WebkitBackgroundClip: 'text',
@@ -2340,7 +2340,7 @@ export const Home = () => {
                   </motion.span>
                 </motion.p>
                 <motion.p
-                  className="text-lg md:text-xl lg:text-2xl text-center italic font-semibold text-green-700 mt-4"
+                  className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center italic font-semibold text-green-700 mt-2 sm:mt-4"
                   animate={{ opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -2367,7 +2367,7 @@ export const Home = () => {
 
             {/* Card Footer */}
             <motion.div
-              className="mt-8 flex justify-center gap-6"
+              className="mt-4 sm:mt-6 md:mt-8 flex justify-center gap-3 sm:gap-4 md:gap-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 3 }}
@@ -2375,7 +2375,7 @@ export const Home = () => {
               {['🥥', '🌴', '🌺', '🪔'].map((emoji, i) => (
                 <motion.span
                   key={i}
-                  className="text-5xl"
+                  className="text-3xl sm:text-4xl md:text-5xl"
                   animate={{ 
                     y: [0, -10, 0],
                     rotate: [0, 10, -10, 0]
@@ -2398,7 +2398,7 @@ export const Home = () => {
       {/* Surprise Kathakali Dancer - positioned outside card */}
       {showDancer && !surpriseClicked && (
         <motion.div
-          className="absolute bottom-10 right-5 md:right-10 z-50"
+          className="absolute bottom-4 sm:bottom-8 md:bottom-10 right-2 sm:right-5 md:right-10 z-50"
           initial={{ x: 200, opacity: 0, scale: 0.5 }}
           animate={{ x: 0, opacity: 1, scale: 1 }}
           transition={{ delay: 3, duration: 1, type: "spring", bounce: 0.6 }}
@@ -2415,7 +2415,7 @@ export const Home = () => {
         return (
           <motion.div
             key={`element-${i}`}
-            className="absolute text-2xl md:text-3xl opacity-60"
+            className="absolute text-xl sm:text-2xl md:text-3xl opacity-60"
             style={{
               left: `${Math.random() * 100}%`,
               top: -50,
