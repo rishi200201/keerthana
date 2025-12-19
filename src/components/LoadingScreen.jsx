@@ -1,72 +1,144 @@
 import { useEffect, useState } from "react";
 
 export const LoadingScreen = ({ onComplete }) => {
-  const [text, setText] = useState("");
-  const [showFlash, setShowFlash] = useState(false);
-  const fullText = "Capturing Moments";
+  const [lightOn, setLightOn] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      setText(fullText.substring(0, index));
-      index++;
+    const runSequence = async () => {
+      setLightOn(false); // initial dim/off state
+      await delay(1000);
 
-      if (index > fullText.length) {
-        clearInterval(interval);
-        setShowFlash(true);
+      setLightOn(true); // show stickman with cake
+      await delay(2500);
 
-        setTimeout(() => {
-          setShowFlash(false);
-          onComplete();
-        }, 1000);
-      }
-    }, 90);
+      setLightOn(false); // hide stickman
+      await delay(500);
 
-    return () => clearInterval(interval);
+      setFadeOut(true);
+      await delay(600);
+
+      onComplete();
+    };
+    runSequence();
   }, [onComplete]);
 
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  // Handler to toggle light manually
+  const toggleLight = () => setLightOn((prev) => !prev);
+
   return (
-    <div className="fixed inset-0 z-50 bg-black text-white flex flex-col items-center justify-center px-4 py-8 space-y-4">
-      {/* Stickman with DSLR */}
-      <div className="w-32 h-32 relative">
-        <svg viewBox="0 0 100 100" fill="none" className="w-full h-full">
-          {/* Head */}
-          <circle cx="50" cy="15" r="6" stroke="white" strokeWidth="2" />
+    <div
+      className={`fixed inset-0 flex flex-col items-center justify-center transition-opacity duration-500 ${
+        fadeOut ? "opacity-0" : "opacity-100"
+      } ${lightOn ? "bg-yellow-100" : "bg-black"}`}
+    >
+      {/* Stickman + cake (only if lightOn) */}
+      {lightOn && (
+        <div className="flex flex-col items-center text-black relative">
+          <svg viewBox="0 0 100 100" className="w-32 h-32">
+            {/* Head */}
+            <circle
+              cx="50"
+              cy="20"
+              r="6"
+              stroke="black"
+              strokeWidth="2"
+              fill="none"
+            />
+            {/* Body */}
+            <line
+              x1="50"
+              y1="26"
+              x2="50"
+              y2="60"
+              stroke="black"
+              strokeWidth="2"
+            />
+            {/* Left arm (holding cake, extended forward) */}
+            <line
+              x1="50"
+              y1="40"
+              x2="70"
+              y2="35"
+              stroke="black"
+              strokeWidth="2"
+            />
+            {/* Right arm down */}
+            <line
+              x1="50"
+              y1="35"
+              x2="30"
+              y2="40"
+              stroke="black"
+              strokeWidth="2"
+            />
+            {/* Legs */}
+            <line
+              x1="50"
+              y1="60"
+              x2="40"
+              y2="80"
+              stroke="black"
+              strokeWidth="2"
+            />
+            <line
+              x1="50"
+              y1="60"
+              x2="60"
+              y2="80"
+              stroke="black"
+              strokeWidth="2"
+            />
 
-          {/* Body */}
-          <line x1="50" y1="21" x2="50" y2="50" stroke="white" strokeWidth="2" />
+            {/* Cake in left hand: a simple rectangle + layers + cherry */}
+            <rect
+              x="67"
+              y="28"
+              width="10"
+              height="8"
+              fill="#F4A261"
+              stroke="black"
+              strokeWidth="1"
+              rx="2"
+            />
+            <rect
+              x="67"
+              y="33"
+              width="10"
+              height="3"
+              fill="#E76F51"
+              stroke="black"
+              strokeWidth="1"
+              rx="1"
+            />
+            <circle
+              cx="72"
+              cy="27"
+              r="2"
+              fill="#E63946"
+              stroke="black"
+              strokeWidth="0.5"
+            />
+          </svg>
+        </div>
+      )}
 
-          {/* Arms */}
-          <path d="M50 28 Q40 32 35 38" stroke="white" strokeWidth="2" fill="none" />
-          <path d="M50 28 Q60 32 65 38" stroke="white" strokeWidth="2" fill="none" />
-
-          {/* Legs */}
-          <path d="M50 50 Q45 65 40 80" stroke="white" strokeWidth="2" fill="none" />
-          <path d="M50 50 Q55 65 60 80" stroke="white" strokeWidth="2" fill="none" />
-
-          {/* Camera */}
-          <g transform="translate(35, 22)">
-            <rect x="0" y="0" width="30" height="18" rx="2" fill="#1e293b" stroke="#60A5FA" strokeWidth="1.5" />
-            {/* Lens */}
-            <circle cx="23" cy="9" r="4.5" fill="#60A5FA" stroke="white" strokeWidth="1" />
-            {/* Flash unit */}
-            <rect x="6" y="-6" width="8" height="5" rx="1" fill="#60A5FA" />
-            {/* Button */}
-            <circle cx="3" cy="4" r="1.5" fill="white" />
-          </g>
-        </svg>
-
-        {/* Flash */}
-        {showFlash && (
-          <div className="absolute top-0 left-0 w-full h-full rounded-full bg-white opacity-80 animate-ping pointer-events-none" />
-        )}
-      </div>
-
-      {/* Typing Text */}
-      <div className="text-2xl md:text-3xl font-mono font-semibold text-center tracking-widest">
-        {text}
-        <span className="animate-blink ml-1">|</span>
-      </div>
+      {/* Switch button */}
+      <label className="relative inline-flex items-center cursor-pointer mt-6">
+        <input
+          type="checkbox"
+          className="sr-only peer"
+          checked={lightOn}
+          onChange={toggleLight}
+        />
+        <div className="w-14 h-8 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-yellow-300 rounded-full peer peer-checked:bg-yellow-400 transition-colors"></div>
+        <div
+          className="absolute left-1 top-1 w-6 h-6 bg-white rounded-full shadow-md 
+                     peer-checked:translate-x-6 transition-transform"
+        ></div>
+      </label>
     </div>
   );
 };
